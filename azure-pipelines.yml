@@ -14,11 +14,20 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**\*.sln'
-    feedsToUse: 'select'
+stages:
+- stage: NuGet
+  displayName: 'NuGet'
+  jobs:
+  - job: Nuget
+    displayName: 'Nuget'
+    pool:
+      name: Build Agent
+    steps:
+    - task: NuGetToolInstaller@1
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: '**\*.sln'
+      feedsToUse: 'select'
