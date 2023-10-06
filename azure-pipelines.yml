@@ -30,4 +30,4 @@ stages:
       inputs:
         command: 'restore'
         projects: '**\*.sln'
-      feedsToUse: 'select'
+        feedsToUse: 'select'
